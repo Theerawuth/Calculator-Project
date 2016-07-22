@@ -20,6 +20,7 @@ public class CalculateActivity extends AppCompatActivity {
     String DisplaySol = "";
     String Operation;
     float numberFirst;
+    CalculateTest calculateTest;
 
     public Button[] buttonNb;
     public int[] buttonNumbers = {
@@ -68,7 +69,7 @@ public class CalculateActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calculate);
-
+        calculateTest = new CalculateTest();
         screenShow = (TextView) findViewById(R.id.screenshow);
         screenSol = (TextView) findViewById(R.id.screensol);
 
@@ -81,11 +82,9 @@ public class CalculateActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     Button btnNumber = (Button) v;
                     String textNumber = (String) btnNumber.getText();
-
-                    Display += textNumber;
-                    screenShow.setText(String.valueOf(Integer.valueOf(Display)));
-                    DisplaySol += textNumber;
-                    screenSol.setText(String.valueOf(Integer.valueOf(Display)));
+                    calculateTest.pressNumber(textNumber);
+                    screenShow.setText(calculateTest.temp);
+                    screenSol.setText(calculateTest.temp);
                 }
             });
         }
@@ -97,38 +96,51 @@ public class CalculateActivity extends AppCompatActivity {
             buttonOp[i].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    switch (v.getId()) {
-                        case R.id.buttonclean:
-                            screenShow.setText("0");
-                            numberFirst = 0;
-                            Operation="";
-                            DisplaySol="";
-                            Display="";
-                            break;
-                        case R.id.buttonplus:
-                            DisplaySol += "+";
-                            recordValue("+");
-                            break;
-                        case R.id.buttonminus:
-                            DisplaySol += "-";
-                            recordValue("-");
-                            break;
-                        case R.id.buttonmulti:
-                            DisplaySol += "*";
-                            recordValue("*");
-                            break;
-                        case R.id.buttondiv:
-                            DisplaySol += "/";
-                            recordValue("/");
-                            break;
-                        case R.id.buttoncal:
-                            DisplaySol = "";
-                            calResult();
-                            break;
+                    Button btnOperator = (Button) v;
+                    String textOperator = (String) btnOperator.getText();
+                    if (textOperator.equals("="))
+                    {
+                        calculateTest.pressEqual();
+                        screenShow.setText(String.valueOf(calculateTest.result));
                     }
-                    screenSol.setText(DisplaySol);
-                }
-            });
+                    else
+                    {
+                        calculateTest.pressOperator(textOperator);
+                        screenSol.setText(calculateTest.currentOperator);
+                    }
+
+
+//                    switch (v.getId()) {
+//                        case R.id.buttonclean:
+//                            screenShow.setText("0");
+//                            numberFirst = 0;
+//                            Operation="";
+//                            DisplaySol="";
+//                            Display="";
+//                            break;
+//                        case R.id.buttonplus:
+//                            DisplaySol += "+";
+//                            recordValue("+");
+//                            break;
+//                        case R.id.buttonminus:
+//                            DisplaySol += "-";
+//                            recordValue("-");
+//                            break;
+//                        case R.id.buttonmulti:
+//                            DisplaySol += "*";
+//                            recordValue("*");
+//                            break;
+//                        case R.id.buttondiv:
+//                            DisplaySol += "/";
+//                            recordValue("/");
+//                            break;
+//                        case R.id.buttoncal:
+//                            DisplaySol = "";
+//                            calResult();
+//                            break;
+                    }
+
+                });
         }
     }
 
@@ -139,9 +151,9 @@ public class CalculateActivity extends AppCompatActivity {
             numberFirst = Float.parseFloat(screenShow.getText().toString());
             Display = "";
         }else{
-            calResult();
-            numberFirst =
-            Operation = str;
+//            calResult();
+//            numberFirst =
+//            Operation = str;
 //            temp = "";
         }
         numberFirst = Float.parseFloat(screenShow.getText().toString());

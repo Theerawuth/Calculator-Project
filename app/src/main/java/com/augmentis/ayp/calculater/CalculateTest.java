@@ -8,7 +8,6 @@ public class CalculateTest {
     String temp ="";
     String currentOperator="";
     int mainNumbers = 0;
-    int mainNumbers2 = 0;
     int result;
 
     public void pressNumber(String s) {
