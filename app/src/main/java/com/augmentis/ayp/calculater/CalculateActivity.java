@@ -61,6 +61,7 @@ public class CalculateActivity extends AppCompatActivity {
             result = numberFirst / numberSecond;
         }
         screenShow.setText(String.valueOf(result));
+
     }
 
     @Override
@@ -82,9 +83,9 @@ public class CalculateActivity extends AppCompatActivity {
                     String textNumber = (String) btnNumber.getText();
 
                     Display += textNumber;
-                    screenShow.setText(Display);
+                    screenShow.setText(String.valueOf(Integer.valueOf(Display)));
                     DisplaySol += textNumber;
-                    screenSol.setText(DisplaySol);
+                    screenSol.setText(String.valueOf(Integer.valueOf(Display)));
                 }
             });
         }
@@ -121,6 +122,7 @@ public class CalculateActivity extends AppCompatActivity {
                             recordValue("/");
                             break;
                         case R.id.buttoncal:
+                            DisplaySol = "";
                             calResult();
                             break;
                     }
@@ -131,6 +133,17 @@ public class CalculateActivity extends AppCompatActivity {
     }
 
     public void recordValue(String str){
+
+        if(Operation.equals("")) {
+            Operation = str;
+            numberFirst = Float.parseFloat(screenShow.getText().toString());
+            Display = "";
+        }else{
+            calResult();
+            numberFirst =
+            Operation = str;
+//            temp = "";
+        }
         numberFirst = Float.parseFloat(screenShow.getText().toString());
         Operation = str;
         Display = "";
