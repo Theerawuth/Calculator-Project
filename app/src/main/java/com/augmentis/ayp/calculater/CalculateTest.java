@@ -7,8 +7,10 @@ public class CalculateTest {
 
     String temp ="";
     String currentOperator="";
-    int mainNumbers = 0;
-    int result;
+    float firstNumbers;
+    float secondNumbers;
+    float result;
+    String display;
 
     public void pressNumber(String s) {
         temp += s;
@@ -16,13 +18,17 @@ public class CalculateTest {
 
     public void pressOperator(String s) {
 
-        if(currentOperator.equals("")) {
+        if(currentOperator.equals(""))
+        {
             currentOperator = s;
-            mainNumbers = Integer.parseInt(temp);
+            firstNumbers = Float.parseFloat(temp);
+            result = firstNumbers;
             temp = "";
-        }else{
+        }
+        else
+        {
             pressEqual();
-            mainNumbers = result;
+            firstNumbers = result;
             currentOperator = s;
             temp = "";
         }
@@ -30,23 +36,26 @@ public class CalculateTest {
     }
 
     public void pressEqual() {
+        secondNumbers = Float.parseFloat(temp);
         switch (currentOperator){
             case "+":
-                result = mainNumbers + Integer.parseInt(temp);
+                result = firstNumbers + secondNumbers;
                 break;
             case "-":
-                result = mainNumbers - Integer.parseInt(temp);
+                result = firstNumbers - secondNumbers;
                 break;
             case "*":
-                result = mainNumbers * Integer.parseInt(temp);
+                result = firstNumbers * secondNumbers;
                 break;
             case "/":
-                result = mainNumbers / Integer.parseInt(temp);
+                result = firstNumbers / secondNumbers;
                 break;
         }
+        display = String.valueOf(result);
     }
 
-    public int getResult() {
+    public float getResult() {
+
         return result;
     }
 }

@@ -82,7 +82,7 @@
             android:background="#c6e2d7" />
         <Button
             android:id="@+id/buttonmulti"
-            android:text="X"
+            android:text="*"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:textSize="20sp"

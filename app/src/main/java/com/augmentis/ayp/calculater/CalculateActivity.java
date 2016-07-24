@@ -16,8 +16,6 @@ public class CalculateActivity extends AppCompatActivity {
 
     TextView screenShow;
     TextView screenSol;
-    String Display = "";
-    String DisplaySol = "";
     String Operation;
     float numberFirst;
     CalculateTest calculateTest;
@@ -46,24 +44,24 @@ public class CalculateActivity extends AppCompatActivity {
             R.id.buttoncal,
     };
 
-    public void calResult(){
-        float numberSecond = Float.parseFloat(screenShow.getText().toString());
-        float result = 0;
-        if(Operation.equals("+")){
-            result = numberFirst + numberSecond;
-        }
-        if(Operation.equals("-")){
-            result = numberFirst - numberSecond;
-        }
-        if(Operation.equals("*")){
-            result = numberFirst * numberSecond;
-        }
-        if(Operation.equals("/")){
-            result = numberFirst / numberSecond;
-        }
-        screenShow.setText(String.valueOf(result));
-
-    }
+//    public void calResult(){
+//        float numberSecond = Float.parseFloat(screenShow.getText().toString());
+//        float result = 0;
+//        if(Operation.equals("+")){
+//            result = numberFirst + numberSecond;
+//        }
+//        if(Operation.equals("-")){
+//            result = numberFirst - numberSecond;
+//        }
+//        if(Operation.equals("*")){
+//            result = numberFirst * numberSecond;
+//        }
+//        if(Operation.equals("/")){
+//            result = numberFirst / numberSecond;
+//        }
+//        screenShow.setText(String.valueOf(result));
+//
+//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,7 +82,7 @@ public class CalculateActivity extends AppCompatActivity {
                     String textNumber = (String) btnNumber.getText();
                     calculateTest.pressNumber(textNumber);
                     screenShow.setText(calculateTest.temp);
-                    screenSol.setText(calculateTest.temp);
+                    screenSol.setText(screenSol.getText()+textNumber);
                 }
             });
         }
@@ -98,6 +96,7 @@ public class CalculateActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     Button btnOperator = (Button) v;
                     String textOperator = (String) btnOperator.getText();
+
                     if (textOperator.equals("="))
                     {
                         calculateTest.pressEqual();
@@ -106,8 +105,16 @@ public class CalculateActivity extends AppCompatActivity {
                     else
                     {
                         calculateTest.pressOperator(textOperator);
-                        screenSol.setText(calculateTest.currentOperator);
+                        screenShow.setText(calculateTest.display);
+                        screenSol.setText(screenSol.getText()+textOperator);
                     }
+                }
+
+            });
+
+        }
+
+    }}
 
 
 //                    switch (v.getId()) {
@@ -138,28 +145,23 @@ public class CalculateActivity extends AppCompatActivity {
 //                            DisplaySol = "";
 //                            calResult();
 //                            break;
-                    }
 
-                });
-        }
-    }
-
-    public void recordValue(String str){
-
-        if(Operation.equals("")) {
-            Operation = str;
-            numberFirst = Float.parseFloat(screenShow.getText().toString());
-            Display = "";
-        }else{
+//    public void recordValue(String str){
+//
+//        if(Operation.equals("")) {
+//            Operation = str;
+//            numberFirst = Float.parseFloat(screenShow.getText().toString());
+//            Display = "";
+//        }else{
 //            calResult();
 //            numberFirst =
 //            Operation = str;
 //            temp = "";
-        }
-        numberFirst = Float.parseFloat(screenShow.getText().toString());
-        Operation = str;
-        Display = "";
-
-    }
-
-}
+//        }
+//        numberFirst = Float.parseFloat(screenShow.getText().toString());
+//        Operation = str;
+//        Display = "";
+//
+//    }
+//
+//}
