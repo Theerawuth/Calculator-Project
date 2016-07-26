@@ -17,7 +17,7 @@ public class CalculatorUnitTest {
         calculateTest.pressEqual();
         float calculatorResult = calculateTest.getResult();
 
-        assertEquals(2, calculatorResult);
+        assertEquals(2.00, calculatorResult,0);
     }
 
     @Test
@@ -32,7 +32,7 @@ public class CalculatorUnitTest {
         calculateTest.pressEqual();
         float calculatorResult = calculateTest.getResult();
 
-        assertEquals(6, calculatorResult);
+        assertEquals(6.00, calculatorResult, 0);
     }
 
     @Test
@@ -47,7 +47,7 @@ public class CalculatorUnitTest {
         calculateTest.pressEqual();
         float calculatorResult = calculateTest.getResult();
 
-        assertEquals(0, calculatorResult);
+        assertEquals(0, calculatorResult,0);
     }
 
     @Test
@@ -64,7 +64,7 @@ public class CalculatorUnitTest {
         calculateTest.pressEqual();
         float calculatorResult = calculateTest.getResult();
 
-        assertEquals(0, calculatorResult);
+        assertEquals(0, calculatorResult, 0);
     }
 
     @Test
@@ -77,6 +77,19 @@ public class CalculatorUnitTest {
         calculateTest.pressEqual();
         float calculatorResult = calculateTest.getResult();
 
-        assertEquals(12, calculatorResult);
+        assertEquals(12, calculatorResult, 0);
+    }
+
+    @Test
+    public void test_display(){
+        CalculateTest calculateTest = new CalculateTest();
+        calculateTest.pressNumber("10");
+        calculateTest.pressOperator("+");
+        calculateTest.pressNumber("10");
+        calculateTest.pressEqual();
+
+        float calculatorResult = calculateTest.getResult();
+
+        assertEquals(12, calculatorResult, 0);
     }
 }
